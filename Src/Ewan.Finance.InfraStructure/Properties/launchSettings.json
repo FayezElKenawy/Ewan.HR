@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Ewan.Finance.InfraStructure": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:59567;http://localhost:59568"
+    }
+  }
+}
