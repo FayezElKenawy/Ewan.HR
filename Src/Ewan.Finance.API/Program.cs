@@ -120,7 +120,7 @@ try
     #endregion
 
     #region Mappers
-    builder.Services.AddSingleton(AutoMapperConfigurations.GetMapper());
+    builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
     #endregion
 
     #region Localization
