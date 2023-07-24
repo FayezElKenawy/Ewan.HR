@@ -1,4 +1,4 @@
-﻿using Ewan.Finance.API.Controllers;
+﻿using Ewan.HR.API.Controllers;
 using Ewan.HR.Core.Application.Services.Attendance;
 using Microsoft.AspNetCore.Mvc;
 using SharedCoreLibrary.Application.Models.Request;

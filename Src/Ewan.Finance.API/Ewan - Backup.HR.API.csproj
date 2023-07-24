@@ -46,8 +46,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\SharedApiLibrary\SharedApiLibrary.csproj" />
-    <ProjectReference Include="..\Ewan.HR.Core\Ewan.HR.Core.csproj" />
-    <ProjectReference Include="..\Ewan.HR.InfraStructure\Ewan.HR.InfraStructure.csproj" />
+    <ProjectReference Include="..\Ewan.HRHR.Core\Ewan.HR.Core.csproj" />
+    <ProjectReference Include="..\Ewan.HRHR.InfraStructure\Ewan.HR.InfraStructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

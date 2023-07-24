@@ -1,6 +1,6 @@
 ﻿using Serilog.Context;
 
-namespace Ewan.Finance.API.Common.MiddleWares
+namespace Ewan.HR.API.Common.MiddleWares
 {
     public class LogUserNameMiddleware
     {

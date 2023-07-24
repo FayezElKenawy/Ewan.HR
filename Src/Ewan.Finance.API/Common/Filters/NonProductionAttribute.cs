@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Ewan.Finance.API.Common.Filters
+namespace Ewan.HR.API.Common.Filters
 {
     public class NonProductionAttribute : Attribute, IResourceFilter
     {

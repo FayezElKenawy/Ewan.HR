@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Ewan.Finance.API.Common.Policy
+namespace Ewan.HR.API.Common.Policy
 {
     public class UserPolicyAuthorizationHandler : AuthorizationHandler<UserPolicyRequirement>
     {

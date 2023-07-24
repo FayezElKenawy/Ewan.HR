@@ -1,4 +1,4 @@
-﻿namespace Ewan.Finance.API.Dtos.TransactionLogger.Response
+﻿namespace Ewan.HR.API.Dtos.TransactionLogger.Response
 {
     public class TransactionLoggerDto
     {

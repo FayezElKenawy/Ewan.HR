@@ -1,7 +1,7 @@
 ﻿using Ewan.HR.Core.Application.Services.External.Identity;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Ewan.Finance.API.Common.Policy
+namespace Ewan.HR.API.Common.Policy
 {
     public class UserPolicyRequirement : IAuthorizationRequirement
     {
@@ -31,7 +31,7 @@ namespace Ewan.Finance.API.Common.Policy
             string userId = httpContextAccessor.HttpContext.User.Claims
                             .FirstOrDefault(c => c.Type.ToLower().Contains("userid")).Value;
 
-            string permissionFullName = "Finance-" + controller + "-" + action;
+            string permissionFullName = "HR-" + controller + "-" + action;
 
             return await identityService.IsUserHasPermission(int.Parse(userId), permissionFullName);
         }

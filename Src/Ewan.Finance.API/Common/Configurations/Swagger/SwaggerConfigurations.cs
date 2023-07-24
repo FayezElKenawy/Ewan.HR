@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Ewan.Finance.API.Common.Configurations.Swagger
+namespace Ewan.HR.API.Common.Configurations.Swagger
 {
     public class ConfigureSwaggerOptions
         : IConfigureNamedOptions<SwaggerGenOptions>

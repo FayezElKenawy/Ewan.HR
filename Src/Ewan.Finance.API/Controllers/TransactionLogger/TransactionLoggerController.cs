@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
-using Ewan.Finance.API.Dtos.TransactionLogger.Response;
-using Ewan.Finance.Core.Application.Services;
+using Ewan.HR.API.Dtos.TransactionLogger.Response;
+using Ewan.HR.Core.Application.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Ewan.Finance.API.Controllers.CashBoxController
+namespace Ewan.HR.API.Controllers.CashBoxController
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
-    [Authorize(Policy = "FinanceUser")]
+    [Authorize(Policy = "HRUser")]
     public class TransactionLoggerController : BaseController
     {
         private readonly ITransactionLoggerService service;

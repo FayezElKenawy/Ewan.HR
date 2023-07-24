@@ -1,4 +1,6 @@
 ﻿using Ewan.Finance.Core;
+using Ewan.HR.Core.Domain.Entities.Attendance;
+using Ewan.HR.Core.Domain.Entities.PayRoll;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -12,7 +14,7 @@ namespace Ewan.HR.InfraStructure.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
+            optionsBuilder.UseSqlServer();
         }
 
         protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
@@ -31,5 +33,17 @@ namespace Ewan.HR.InfraStructure.Contexts
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly(),
                 conf => conf.IsNotPublic && conf.IsSealed && conf.Namespace.Contains(Consts.ConfigNameSpace));
         }
+
+        #region DbSets
+        #region Attendance
+        public DbSet<EmployeeAttendanceLog>EmployeeAttendanceLogs { get; set; }
+
+        #endregion
+
+        #region PayRoll
+        public DbSet<PayRollData> PayRollData { get; set; }
+
+        #endregion
+        #endregion
     }
 }

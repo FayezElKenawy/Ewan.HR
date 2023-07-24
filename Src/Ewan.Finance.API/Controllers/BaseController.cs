@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Ewan.Finance.Core.Application.Interfaces.BaseController;
+using Ewan.HR.Core.Application.Interfaces.BaseController;
 
-namespace Ewan.Finance.API.Controllers
+namespace Ewan.HR.API.Controllers
 {
     [ApiController]
     [Produces("application/json")]

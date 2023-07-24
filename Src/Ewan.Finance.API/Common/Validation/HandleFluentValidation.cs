@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SharedCoreLibrary.Application.CustomExceptions;
 
-namespace Ewan.Finance.API.Common.Validation
+namespace Ewan.HR.API.Common.Validation
 {
     public static class HandleModelValidation
     {

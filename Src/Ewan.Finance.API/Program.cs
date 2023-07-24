@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Ewan.Finance.InfraStructure.Loggers.Serilog;
+using Ewan.HR.InfraStructure.Loggers.Serilog;
 using Serilog;
 using System.Diagnostics;
 using System.Globalization;
@@ -15,17 +15,17 @@ using SharedApiLibrary.Filters.Swagger;
 using SharedApiLibrary.Extensions;
 using SharedInfraStructureLibrary.Extensions;
 using FluentValidation.AspNetCore;
-using Ewan.Finance.API.Common.MiddleWares;
-using Ewan.Finance.API.Common.Configurations.Swagger;
-using Ewan.Finance.API.Common.Configurations;
-using Ewan.Finance.API.Common.Validation;
+using Ewan.HR.API.Common.MiddleWares;
+using Ewan.HR.API.Common.Configurations.Swagger;
+using Ewan.HR.API.Common.Configurations;
+using Ewan.HR.API.Common.Validation;
 using Ewan.HR.API.Common.Extensions;
 using Ewan.HR.InfraStructure.UinitsOfWork;
 using Ewan.HR.Core.Domain.Interfaces;
 using SharedInfraStructureLibrary.Interceptors;
 using Ewan.HR.InfraStructure.Contexts;
 using SharedCoreLibrary.Application.Extensions;
-using Ewan.Finance.Core.Application.Triggers;
+using Ewan.HR.Core.Application.Triggers;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using Quartz;
 using Ewan.HR.API.Quartz.Jobs;
@@ -197,7 +197,7 @@ try
     //    options =>
     //    {
     //        options.AddPolicy(
-    //            "FinanceUser",
+    //            "HRUser",
     //            new AuthorizationPolicyBuilder()
     //                .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
     //                .RequireAuthenticatedUser()
@@ -205,7 +205,7 @@ try
     //                .Build());
 
     //        options.AddPolicy(
-    //            "AnonymousFinanceUser",
+    //            "AnonymousHRUser",
     //            new AuthorizationPolicyBuilder()
     //                .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
     //                .RequireAuthenticatedUser()
