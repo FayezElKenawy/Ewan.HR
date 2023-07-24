@@ -55,4 +55,10 @@
     <Folder Include="Application\Triggers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Ewan.HR.Core">
+      <HintPath>bin\Debug\net6.0\Ewan.HR.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

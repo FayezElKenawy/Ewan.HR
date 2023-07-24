@@ -25,7 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\SharedInfraStructureLibrary\SharedInfraStructureLibrary.csproj" />
-    <ProjectReference Include="..\Ewan.Finance.Core\Ewan.HR.Core.csproj" />
+    <ProjectReference Include="..\Ewan.HR.Core\Ewan.HR.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

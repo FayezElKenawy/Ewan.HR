@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Ewan.Finance.Core.Application.Services;
 using Ewan.HR.API.Dtos.TransactionLogger.Response;
 using Ewan.HR.Core.Application.Services;
 using Microsoft.AspNetCore.Authorization;

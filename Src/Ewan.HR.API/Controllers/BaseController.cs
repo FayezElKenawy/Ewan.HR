@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Ewan.HR.Core.Application.Interfaces.BaseController;
+using Ewan.Finance.Core.Application.Interfaces.BaseController;
 
 namespace Ewan.HR.API.Controllers
 {

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Ewan.HR.InfraStructure.Loggers.Serilog;
 using Serilog;
 using System.Diagnostics;
 using System.Globalization;
@@ -25,10 +24,11 @@ using Ewan.HR.Core.Domain.Interfaces;
 using SharedInfraStructureLibrary.Interceptors;
 using Ewan.HR.InfraStructure.Contexts;
 using SharedCoreLibrary.Application.Extensions;
-using Ewan.HR.Core.Application.Triggers;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using Quartz;
 using Ewan.HR.API.Quartz.Jobs;
+using Ewan.Finance.InfraStructure.Loggers.Serilog;
+using Ewan.Finance.Core.Application.Triggers;
 
 Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
 
