@@ -5,7 +5,7 @@ namespace Ewan.HR.Core.Application.Services.Attendance
 {
     public interface IAttendanceService
     {
-        string GetLAstId();
+        //string GetLAstId();
         Task<bool> GetEmployeesAttendance(string start, string end, string[] emps);
         Task<List<AttendanceDataVM>> GatAttendanceData(string id, string startTime, string endTime);
     }

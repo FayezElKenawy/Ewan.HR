@@ -59,7 +59,7 @@ namespace Ewan.HR.Core.Application.Services.Attendance
                 var employeesNewAttendance = await _calcAttendnace.GetNewEmployeesAttendanceList(employeeList, start, end, "0");
 
                 if (employeesNewAttendance != null)
-                    await _unitOfWork.AttendanceRepository.AddRangeAsync(_mapper.Map<IEnumerable<EmployeeAttendanceLog>>(employeesNewAttendance));
+                    await _unitOfWork.AttendanceRepository.AddRangeAsync( _mapper.Map<IEnumerable<EmployeeAttendanceLog>>(employeesNewAttendance));
 
                 var saveResult = await _unitOfWork.CompleteAsync();
                 if (saveResult <= 0)
