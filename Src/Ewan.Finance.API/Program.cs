@@ -26,6 +26,9 @@ using SharedInfraStructureLibrary.Interceptors;
 using Ewan.HR.InfraStructure.Contexts;
 using SharedCoreLibrary.Application.Extensions;
 using Ewan.Finance.Core.Application.Triggers;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using Quartz;
+using Ewan.HR.API.Quartz.Jobs;
 
 Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
 
@@ -245,12 +248,40 @@ try
     builder.Services.AddServices();
     #endregion
 
+    #region Quartz
+    builder.Services.AddQuartz(q =>
+    {
+        q.UseMicrosoftDependencyInjectionJobFactory();
+
+        // Just use the name of your job that you created in the Jobs folder.
+        var jobKey = new JobKey("EmployeeAttendanceJob");
+        q.AddJob<EmployeeAttendanceJob>(opts => opts.WithIdentity(jobKey));
+
+        q.AddTrigger(opts => opts
+            .ForJob(jobKey)
+            .WithIdentity("EmployeeAttendanceJob-trigger")
+             .StartNow()
+             .WithSimpleSchedule(x => x.WithIntervalInHours(23)
+             .RepeatForever())
+        ); 
+    });
+
+    // ASP.NET Core hosting
+    builder.Services.AddQuartzServer(options =>
+    {
+        // when shutting down we want jobs to complete gracefully
+        options.WaitForJobsToComplete = true;
+    });
+    #endregion
+
     #region Shared InfraStructure Services
     builder.Services.AddLocalizationService();
     builder.Services.AddCodeHelper();
     builder.Services.AddApiHelper();
     builder.Services.AddUpdateAuditDataInterceptor();
     #endregion
+
+   
 
     builder.Services.AddHttpContextAccessor();
     #endregion

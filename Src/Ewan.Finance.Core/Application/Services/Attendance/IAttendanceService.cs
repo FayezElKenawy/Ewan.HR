@@ -5,8 +5,8 @@ namespace Ewan.HR.Core.Application.Services.Attendance
 {
     public interface IAttendanceService
     {
-        Task<string> GetLAstId();
-        Task<GlobalReturnVM<AttendanceDataVM>> GetAllAttendanceDataFromBioTime(string start, string end, string[] emps);
-        Task<GlobalReturnVM<AttendanceDataVM>> GatAttendanceData(string id, string startTime, string endTime);
+        string GetLAstId();
+        Task<bool> GetEmployeesAttendance(string start, string end, string[] emps);
+        Task<List<AttendanceDataVM>> GatAttendanceData(string id, string startTime, string endTime);
     }
 }

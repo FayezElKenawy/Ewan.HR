@@ -5,7 +5,7 @@ using SharedInfraStructureLibrary.Repositories;
 
 namespace Ewan.HR.InfraStructure.Repositories.Attendance
 {
-    public class AttendanceRepository:Repository<AttendanceData,HrContext>,IAttendanceRepository
+    public class AttendanceRepository:Repository<EmployeeAttendanceLog,HrContext>,IAttendanceRepository
     {
         public AttendanceRepository(HrContext context):base(context)
         {

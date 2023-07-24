@@ -3,7 +3,7 @@ using SharedCoreLibrary.Domain.Entities;
 
 namespace Ewan.HR.Core.Domain.Entities.Attendance
 {
-    public class AttendanceData:AuditDataWithoutId
+    public class EmployeeAttendanceLog : AuditDataWithoutId
     {
         [Key]
         public string Id { get; set; }

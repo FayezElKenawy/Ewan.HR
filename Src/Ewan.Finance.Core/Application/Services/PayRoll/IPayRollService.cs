@@ -4,6 +4,6 @@ namespace Ewan.HR.Core.Application.Services.PayRoll
 {
     public class IPayRollService
     {
-        public Task<GlobalReturnVM<IPayRollService>> Add { get; set; }
+        public Task<List<IPayRollService>> Add { get; set; }
     }
 }

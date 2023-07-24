@@ -1,6 +1,6 @@
 ﻿namespace Ewan.HR.Core.Application.Models.Attendance
 {
-    public class GetUsersDataVM
+    public class GetEmployeeDataVM
     {
         public string emp_code { get; set; }
         public string first_name { get; set; }

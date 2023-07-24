@@ -16,11 +16,12 @@ namespace Ewan.HR.API.Controllers.Attendance
             _attendanceService = attendanceService;
         }
 
-        [HttpPost("GetPagedList")]
-        public async Task<IActionResult> GetPagedList(SearchModel searchModel)
+        [HttpPost("GetEmployeesAttendance")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+        public async Task<IActionResult> GetEmployeesAttendance(string start = null, string end = null, string[] emps = null)
         {
-            var t =await _attendanceService.GetAllAttendanceDataFromBioTime(null, null, null);
-            return Ok(t.Details);
+            var result = await _attendanceService.GetEmployeesAttendance(start, end, emps);
+            return Ok(result);
         }
     }
 }

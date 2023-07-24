@@ -13,7 +13,7 @@ namespace Ewan.HR.Core.Application.Services.Attendance
         #region Private Members
         private readonly IHRUnitOfWork _unitOfWork;
         private readonly ICalcAttendanceService _calcAttendnace;
-        private readonly IGetOutsideDataService _getData;
+        private readonly IBioTimeService _bioTimeService;
         private readonly IMapper _mapper;
         #endregion
 
@@ -21,71 +21,57 @@ namespace Ewan.HR.Core.Application.Services.Attendance
         public AttendanceService(IHRUnitOfWork unitOfWork
             , ICalcAttendanceService calcAttendnace
             , IMapper mapper
-            , IGetOutsideDataService getData)
+            , IBioTimeService bioTimeService)
         {
             _unitOfWork = unitOfWork;
             _calcAttendnace = calcAttendnace;
             _mapper = mapper;
-            _getData = getData;
+            _bioTimeService = bioTimeService;
         }
         #endregion
 
         #region Functions
-        public async Task<string> GetLAstId()
-        {//last id inserted to db from bioTime
-            try
-            {
-                var id =(await _unitOfWork.AttendanceRepository.GetPagedListAsync())
-                     .Entities
-                     .OrderByDescending(c => int.Parse(c.Id))
-                     .FirstOrDefault()
-                     .Id;
-                return  id.ToString();
-            }
-            catch (Exception)
-            {
-
-                return "0";
-            }
-
-        }
-
-        public async Task<GlobalReturnVM<AttendanceDataVM>> GetAllAttendanceDataFromBioTime(string start, string end, string[] emps)
+        public string GetLAstId()
         {
-            try
-            {
-                var data = await _getData.GetEmployeeData();
-                if (data != null)
-                {
-                    var attendance = await _calcAttendnace.CalcAttendanceData(data.Details.ToList(), start, end, "0");
+            var lastAttendanceRow = _unitOfWork.AttendanceRepository.GetList()
+                     .OrderByDescending(c => int.Parse(c.Id))
+                     .FirstOrDefault();
 
-                    if (attendance.Message == "Success")
-                    {
-                        await _unitOfWork.AttendanceRepository.AddRangeAsync(_mapper.Map<IEnumerable<AttendanceData>>(attendance.Details));
-                    }
-                    var d = await _unitOfWork.CompleteAsync();
-                    if (d > 0)
-                    {
-                        return attendance;
-                    }
-                }
-                return new GlobalReturnVM<AttendanceDataVM>
-                {
-                    Count = 0,
-                    Details = null,
-                    Message = "No Data Founded"
-                };
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-
-
+            if (lastAttendanceRow != null)
+                return lastAttendanceRow.Id.ToString();
+            return string.Empty;
         }
 
-        public async Task<GlobalReturnVM<AttendanceDataVM>> GatAttendanceData(string id, string startTime, string endTime)
+        /// <summary>
+        /// 1-Get all employees
+        /// 2-Calculate attendance for every employee after last insersion
+        /// 3-insert new attendance in db
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="emps"></param>
+        /// <returns></returns>
+        public async Task<bool> GetEmployeesAttendance(string start, string end, string[] emps)
+        {
+            var employeeList = await _bioTimeService.GetEmployeeData();
+            if (employeeList != null)
+            {
+                var employeesNewAttendance = await _calcAttendnace.GetNewEmployeesAttendanceList(employeeList, start, end, "0");
+
+                if (employeesNewAttendance != null)
+                    await _unitOfWork.AttendanceRepository.AddRangeAsync(_mapper.Map<IEnumerable<EmployeeAttendanceLog>>(employeesNewAttendance));
+
+                var saveResult = await _unitOfWork.CompleteAsync();
+                if (saveResult <= 0)
+                    return false;
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public async Task<List<AttendanceDataVM>> GatAttendanceData(string id, string startTime, string endTime)
         {
 
             if (id != null)
@@ -94,12 +80,7 @@ namespace Ewan.HR.Core.Application.Services.Attendance
                                                            .GetAsync(c => c.CreatorId == id
                                                                                     && c.CreationDate == DateTime.Parse(startTime)
                                                                                     && c.CreationDate == DateTime.Parse(endTime)));
-                return new GlobalReturnVM<AttendanceDataVM>
-                {
-                    Count = attendance1.Count(),
-                    Details = attendance1,
-                    Message = "Success"
-                };
+                return attendance1;
             }
 
             var attendance = _mapper.Map<List<AttendanceDataVM>>(await _unitOfWork
@@ -107,13 +88,7 @@ namespace Ewan.HR.Core.Application.Services.Attendance
                                                                         .GetAsync(c => c.CreationDate >= DateTime.Parse(startTime)
                                                                                  && c.CreationDate <= DateTime.Parse(endTime)));
 
-            return new GlobalReturnVM<AttendanceDataVM>
-            {
-
-                Count = attendance.Count(),
-                Details = attendance,
-                Message = "success"
-            };
+            return attendance;
         }
         #endregion
     }

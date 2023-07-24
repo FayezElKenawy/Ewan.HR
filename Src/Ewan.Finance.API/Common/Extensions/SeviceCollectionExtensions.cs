@@ -44,7 +44,7 @@ namespace Ewan.HR.API.Common.Extensions
             #region Attendance
             services.AddScoped<IAttendanceService, AttendanceService>();
             services.AddScoped<ICalcAttendanceService,CalcAttendanceService>();
-            services.AddScoped<IGetOutsideDataService, GetOutsideDataService>();
+            services.AddScoped<IBioTimeService, BioTimeService>();
             services.AddScoped<ICalcAbsentTime, CalcAbsentTime>();
             services.AddScoped<ICalcOvertime, CalcOvertime>();
             #endregion

@@ -3,7 +3,7 @@ using SharedCoreLibrary.Domain.Abstractions;
 
 namespace Ewan.HR.Core.Domain.Interfaces.Repositories.Attendance
 {
-    public interface IAttendanceRepository:IRepository<AttendanceData>
+    public interface IAttendanceRepository:IRepository<EmployeeAttendanceLog>
     {
     }
 }
