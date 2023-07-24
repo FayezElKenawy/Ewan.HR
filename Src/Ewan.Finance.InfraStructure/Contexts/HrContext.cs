@@ -1,5 +1,7 @@
 ﻿using Ewan.Finance.Core;
+using Ewan.HR.Core.Domain.Entities.Attendance;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System.Reflection;
 
 namespace Ewan.HR.InfraStructure.Contexts
@@ -12,7 +14,7 @@ namespace Ewan.HR.InfraStructure.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
+            optionsBuilder.UseSqlServer("Server=ewan1.uksouth.cloudapp.azure.com;Database=EwanERP.HR.Dev;MultipleActiveResultSets=true;User Id=nawe1;Password=ylaQB@4$1bbZ;");
         }
 
         protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
@@ -31,5 +33,8 @@ namespace Ewan.HR.InfraStructure.Contexts
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly(),
                 conf => conf.IsNotPublic && conf.IsSealed && conf.Namespace.Contains(Consts.ConfigNameSpace));
         }
+
+        public DbSet<EmployeeAttendanceLog> EmployeeAttendanceLog { get; set; }
+
     }
 }

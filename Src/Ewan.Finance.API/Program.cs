@@ -220,8 +220,8 @@ try
         {
             var updateAuditDataInterceptor = sp.GetRequiredService<UpdateAuditDataInterceptor>();
 
-            //optionsBuilder.UseSqlServer(configuration.GetConnectionString("HRConnection"))
-            //              .AddInterceptors(updateAuditDataInterceptor);
+            optionsBuilder.UseSqlServer(configuration.GetConnectionString("HRConnection"))
+                          .AddInterceptors(updateAuditDataInterceptor);
             optionsBuilder
                 .UseTriggers(triggerOptions =>
                 {
