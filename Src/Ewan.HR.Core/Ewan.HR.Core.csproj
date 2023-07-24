@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <Configurations>Debug;Release;Development;Production;Stage</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Application\Extensions\**" />
+    <EmbeddedResource Remove="Application\Extensions\**" />
+    <None Remove="Application\Extensions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="ClosedXML" Version="0.97.0" />
+    <PackageReference Include="EntityFrameworkCore.Triggered" Version="3.2.1" />
+    <PackageReference Include="EntityFrameworkCore.Triggered.Extensions" Version="3.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="7.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.8" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="7.0.9" />
+    <PackageReference Include="MongoDB.Driver" Version="2.19.1" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\SharedCoreLibrary\SharedCoreLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Application\ResourseFiles\Global\Global.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Global.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Application\ResourseFiles\Global\Global.Ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Application\ResourseFiles\Global\Global.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Global.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\Models\External\" />
+    <Folder Include="Application\Triggers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Ewan.HR.Core">
+      <HintPath>bin\Debug\net6.0\Ewan.HR.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
