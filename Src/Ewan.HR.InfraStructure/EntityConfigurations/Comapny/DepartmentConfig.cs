@@ -8,6 +8,8 @@ namespace Ewan.HR.InfraStructure.EntityConfigurations.Comapny
     {
         public void Configure(EntityTypeBuilder<Department> builder)
         {
+            builder.HasKey(x=>x.Id);
+            builder.ToTable("Departments", "HR");
             builder.HasData(
                 new Department() { DepartmentId = "1d6654da-91d6-4502-8428-68f73c54faad", CreationDate = DateTime.Now, Title = "HR" },
                      new Department() { DepartmentId = "46465fe5-385d-420a-9d9d-3d694c4488df", CreationDate = DateTime.Now, Title = "Finance" },

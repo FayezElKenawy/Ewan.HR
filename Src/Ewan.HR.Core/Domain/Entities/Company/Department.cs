@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ewan.HR.Core.Domain.Entities.Company
 {
-    public class Department : AuditDataWithoutId
+    public class Department : AuditData
     {
         #region Fields
         public string DepartmentId { get; set; }

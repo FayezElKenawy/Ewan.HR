@@ -14,7 +14,7 @@ namespace Ewan.HR.InfraStructure.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer();
+            optionsBuilder.UseSqlServer("Server=.;Database=EwanERP.Hr.Local;Integrated Security=True");
         }
 
         protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)

@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Ewan.HR.InfraStructure.EntityConfigurations.Attendance
 {
-    internal sealed class CashBoxConfig : IEntityTypeConfiguration<EmployeeAttendanceLog>
+    internal sealed class EmployeeAttendanceLogConfig : IEntityTypeConfiguration<EmployeeAttendanceLog>
     {
         public void Configure(EntityTypeBuilder<EmployeeAttendanceLog> builder)
         {
-            builder.ToTable("AttendanceData", "HR");
+            builder.ToTable("EmployeeAttendanceLog", "HR");
             builder.HasKey(builder => builder.Id);
         }
     }

@@ -1,12 +1,11 @@
 ﻿namespace Ewan.HR.Core.Application.Models.Attendance
 {
-    public class AttendanceDataVM
+    public class AttendanceDataDTO
     {
-        public string RowId { get; set; }
-        public string EmployeeCode { get; set; }
+        public string Id { get; set; }
+        public string EmployeeId { get; set; }
         public DateTime Date { get; set; }
         public string NameOfDay { get; set; }
-        public string Nationality { get; set; }
         public string DeviceName { get; set; }
         public DateTime ClockIn { get; set; }
         public DateTime ClockOut { get; set; }

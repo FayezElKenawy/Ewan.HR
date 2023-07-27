@@ -15,8 +15,8 @@ namespace Ewan.HR.Core.Application.Mappers.AutoMapper.MapperConfig
         {
             //var da = DateTime.Parse(s.LastOrDefault().punch_time).TimeOfDay - DateTime.Parse(s.FirstOrDefault().punch_time).TimeOfDay;
             DateTime pDate = DateTime.Parse(s.FirstOrDefault().punch_time.Substring(0, 10));
-            d.Id = s.LastOrDefault().id;
-            d.EmployeeId = s.LastOrDefault().emp_code;
+            d.RowId = s.LastOrDefault().id;
+            d.EmployeeCode = s.LastOrDefault().emp_code;
             d.EmployeeName = s.FirstOrDefault().employee_name;
             d.Date = DateTime.Parse(pDate.ToString());
             d.StartPunchTime = DateTime.Parse(s.FirstOrDefault().punch_time);

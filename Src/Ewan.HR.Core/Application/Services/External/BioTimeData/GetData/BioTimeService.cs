@@ -36,8 +36,8 @@ namespace Ewan.HR.Core.Application.Services.External.BioTimeData.GetData
                 if (Res.IsSuccessStatusCode)
                 {
                     var empAttendance = await Res.Content.ReadAsStringAsync();
-                    var attendanceList = JsonConvert.DeserializeObject<GolbalOutSourceDataVM<GetAttendanceVM>>(empAttendance).
-                                          data
+                    var attendanceList = JsonConvert.DeserializeObject<GolbalOutSourceDataVM<GetAttendanceVM>>(empAttendance)
+                                            .data
                                           .OrderBy(c => c.punch_time).ToList();
 
                     return attendanceList;
@@ -51,24 +51,33 @@ namespace Ewan.HR.Core.Application.Services.External.BioTimeData.GetData
 
         public async Task<List<GetEmployeeDataVM>> GetEmployeeData()
         {
-            var endPoint = "/personnel/api/employees/?page_size=1000000";
-            using (var client = new HttpClient())
+            try
             {
-                client.BaseAddress = new Uri("http://10.1.0.10:80/");
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("jwt", GetToken());
-                HttpResponseMessage result = await client.GetAsync(endPoint);
-                if (result.IsSuccessStatusCode)
+                var endPoint = "/personnel/api/employees/?page_size=1000000";
+                using (var client = new HttpClient())
                 {
-                    var employeeData = JsonConvert.DeserializeObject<GolbalOutSourceDataVM<GetEmployeeDataVM>>(await result.Content.ReadAsStringAsync()).data.ToList();
-                    return employeeData;
-                }
-                else
-                {
-                    return null;
+                    client.BaseAddress = new Uri("http://10.1.0.10:80/");
+                    client.DefaultRequestHeaders.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("jwt", GetToken());
+                    HttpResponseMessage result = await client.GetAsync(endPoint);
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var employeeData = JsonConvert.DeserializeObject<GolbalOutSourceDataVM<GetEmployeeDataVM>>(await result.Content.ReadAsStringAsync()).data.ToList();
+                        return employeeData;
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
 
         }
 

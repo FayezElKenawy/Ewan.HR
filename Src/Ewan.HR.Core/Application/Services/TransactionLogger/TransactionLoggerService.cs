@@ -15,9 +15,9 @@ namespace Ewan.Finance.Core.Application.Services
         {
             _mapper = mapper;
             _config = config;
-            var client = new MongoClient(_config["ConnectionStrings:TranactionLogger"]);
-            var database = client.GetDatabase(_config["AppSettings:TransactionLogDatabaseName"]);
-            _transactionLogger = database.GetCollection<TransactionLogger>(_config["AppSettings:TransactionLoggerCollectionName"]);
+            //var client = new MongoClient(_config["ConnectionStrings:TranactionLogger"]);
+            //var database = client.GetDatabase(_config["AppSettings:TransactionLogDatabaseName"]);
+            //_transactionLogger = database.GetCollection<TransactionLogger>(_config["AppSettings:TransactionLoggerCollectionName"]);
         }
 
         public void Add(TransactionLoggerModel transactionLoggerModel)

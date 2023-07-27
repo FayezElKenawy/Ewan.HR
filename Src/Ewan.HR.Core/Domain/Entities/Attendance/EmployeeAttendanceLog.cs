@@ -1,12 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using SharedCoreLibrary.Domain.Entities;
+﻿using SharedCoreLibrary.Domain.Entities;
 
 namespace Ewan.HR.Core.Domain.Entities.Attendance
 {
-    public class EmployeeAttendanceLog : AuditDataWithoutId
+    public class EmployeeAttendanceLog : AuditData
     {
-        [Key]
-        public string Id { get; set; }
+        public string RowId { get; set; }
         public string Nationality { get; set; }
         public string EmployeeCode { get; set; }
         public string EmployeeName { get; set; }

@@ -36,6 +36,10 @@ namespace Ewan.HR.Core.Application.Services.External.BioTimeData.Clac.CalcAttend
 
             foreach (var item in employeeList)
             {
+                //if (item.emp_code != "5131")
+                //{
+                //    continue;
+                //}
                 var employeeAttendanceList = await _bioTimeService.GetEmployeeAttendance(item.emp_code, start, end);
 
                 if (employeeAttendanceList.Count() == 0)

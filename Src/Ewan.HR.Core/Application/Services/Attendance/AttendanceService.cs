@@ -34,11 +34,11 @@ namespace Ewan.HR.Core.Application.Services.Attendance
         public string GetLAstId()
         {
             var lastAttendanceRow = _unitOfWork.AttendanceRepository.GetList()
-                     .OrderByDescending(c => int.Parse(c.Id))
+                     .OrderByDescending(c => int.Parse(c.RowId))
                      .FirstOrDefault();
 
             if (lastAttendanceRow != null)
-                return lastAttendanceRow.Id.ToString();
+                return lastAttendanceRow.RowId.ToString();
             return string.Empty;
         }
 
@@ -71,22 +71,22 @@ namespace Ewan.HR.Core.Application.Services.Attendance
             return false;
         }
 
-        public async Task<List<AttendanceDataVM>> GatAttendanceData(string id, string startTime, string endTime)
+        public List<AttendanceDataVM> GatAttendanceData(string id, string startTime, string endTime)
         {
 
             if (id != null)
             {
-                var attendance1 = _mapper.Map<List<AttendanceDataVM>>(await _unitOfWork.VacationRepository
-                                                           .GetAsync(c => c.CreatorId == id
-                                                                                    && c.CreationDate == DateTime.Parse(startTime)
-                                                                                    && c.CreationDate == DateTime.Parse(endTime)));
+                var attendance1 = _mapper.Map<List<AttendanceDataVM>>( _unitOfWork.AttendanceRepository
+                                                           .Where(c => c.EmployeeCode == id
+                                                                                    && c.ClockIn == DateTime.Parse(startTime)
+                                                                                    && c.ClockOut == DateTime.Parse(endTime)));
                 return attendance1;
             }
 
-            var attendance = _mapper.Map<List<AttendanceDataVM>>(await _unitOfWork
-                                                                        .VacationRepository
-                                                                        .GetAsync(c => c.CreationDate >= DateTime.Parse(startTime)
-                                                                                 && c.CreationDate <= DateTime.Parse(endTime)));
+            var attendance = _mapper.Map<List<AttendanceDataVM>>( _unitOfWork
+                                                                        .AttendanceRepository
+                                                                        .Where(c => c.ClockIn >= DateTime.Parse(startTime)
+                                                                                 && c.ClockOut <= DateTime.Parse(endTime)));
 
             return attendance;
         }

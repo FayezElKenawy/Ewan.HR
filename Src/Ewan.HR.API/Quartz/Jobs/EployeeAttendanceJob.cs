@@ -13,7 +13,9 @@ namespace Ewan.HR.API.Quartz.Jobs
         }
         public async Task Execute(IJobExecutionContext context)
         {
-            await _attendanceService.GetEmployeesAttendance(DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.ToString("dd/MM/yyyy"), null);
+            // await _attendanceService.GetEmployeesAttendance(DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("yyyy-MM-dd"), null);
+            await _attendanceService.GetEmployeesAttendance(null, null, null);
+
         }
     }
 }

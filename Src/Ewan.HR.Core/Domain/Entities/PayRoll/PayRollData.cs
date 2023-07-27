@@ -1,13 +1,9 @@
 ﻿using SharedCoreLibrary.Domain.Entities;
-using System.ComponentModel.DataAnnotations;
 
 namespace Ewan.HR.Core.Domain.Entities.PayRoll
 {
     public class PayRollData:AuditData
     {
-        
-        
-        [Key]
         public string EmployeeCode { get; set; }
         public string EmployeeName { get; set; }
         public string IdType { get; set; }

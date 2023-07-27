@@ -9,6 +9,6 @@
         public const string ThumbnailColumnType = "nvarchar(max)";
         public const string ImageColumnType = "nvarchar(max)";
         public const string CommentColumnType = "nvarchar(max)";
-        public const string ConfigNameSpace = "Ewan.Finance.InfraStructure.EntityConfigurations";
+        public const string ConfigNameSpace = "Ewan.HR.InfraStructure.EntityConfigurations";
     }
 }

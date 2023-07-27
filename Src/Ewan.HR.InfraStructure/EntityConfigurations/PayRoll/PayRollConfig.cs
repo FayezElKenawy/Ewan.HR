@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Ewan.HR.InfraStructure.EntityConfigurations.PayRoll
 {
-    internal sealed class PAyRollConfig : IEntityTypeConfiguration<PayRollData>
+    internal sealed class PayRollConfig : IEntityTypeConfiguration<PayRollData>
     {
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PayRollData> builder)
         {

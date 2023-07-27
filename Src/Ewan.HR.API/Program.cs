@@ -261,7 +261,7 @@ try
             .ForJob(jobKey)
             .WithIdentity("EmployeeAttendanceJob-trigger")
              .StartNow()
-             .WithSimpleSchedule(x => x.WithIntervalInHours(23)
+             .WithSimpleSchedule(x => x.WithIntervalInMinutes(50)
              .RepeatForever())
         ); 
     });
