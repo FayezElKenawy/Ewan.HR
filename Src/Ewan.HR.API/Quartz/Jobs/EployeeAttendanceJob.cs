@@ -1,5 +1,4 @@
 ﻿using Ewan.HR.Core.Application.Services.Attendance;
-using MongoDB.Driver.Linq;
 using Quartz;
 
 namespace Ewan.HR.API.Quartz.Jobs
@@ -13,8 +12,8 @@ namespace Ewan.HR.API.Quartz.Jobs
         }
         public async Task Execute(IJobExecutionContext context)
         {
-            // await _attendanceService.GetEmployeesAttendance(DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("yyyy-MM-dd"), null);
-            await _attendanceService.GetEmployeesAttendance(null, null, null);
+             //await _attendanceService.AddEmployeesAttendance(DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("yyyy-MM-dd"), null);
+            await _attendanceService.AddEmployeesAttendance(null, null, null);
 
         }
     }

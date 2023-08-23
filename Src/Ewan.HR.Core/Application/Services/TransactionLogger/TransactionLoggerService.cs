@@ -22,7 +22,7 @@ namespace Ewan.Finance.Core.Application.Services
 
         public void Add(TransactionLoggerModel transactionLoggerModel)
         {
-            _transactionLogger.InsertOne(_mapper.Map<TransactionLogger>(transactionLoggerModel));
+            //_transactionLogger.InsertOne(_mapper.Map<TransactionLogger>(transactionLoggerModel));
         }
 
         public List<TransactionLoggerModel> GetListPage(string sectorType, string module, string entityName,int pageNumber = 0,int pageSize = 10)

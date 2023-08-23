@@ -63,7 +63,7 @@ namespace SharedInfraStructureLibrary.Extensions
                                     {
                                         if (Nullable.GetUnderlyingType(actualType) != null)
                                         {
-                                            source = source.Where($"{FirstLetterToUpper($"{field.FieldName}")}.Value.Trim().Contains(@0)", field.Value.Trim());
+                                            source = source.Where($"{FirstLetterToUpper($"{field.FieldName}")}.Value.ToString().Trim().Contains(@0)", field.Value.Trim());
                                         }
                                         else
                                         {

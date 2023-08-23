@@ -52,7 +52,6 @@
 
   <ItemGroup>
     <Folder Include="Common\Filters\" />
-    <Folder Include="Controllers\PayRoll\" />
     <Folder Include="Controllers\Request\" />
     <Folder Include="Mappers\AutoMapper\TransactionLogger\" />
     <Folder Include="Quartz\Triggers\" />

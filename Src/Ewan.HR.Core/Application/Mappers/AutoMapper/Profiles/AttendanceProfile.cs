@@ -10,8 +10,8 @@ namespace Ewan.HR.Core.Application.Mappers.AutoMapper.Profiles
         public AttendanceProfile()
         {
             CreateMap<IList<GetAttendanceVM>, AttendanceDataVM>().AfterMap<AttendanceMappingConfig>();
-            CreateMap<AttendanceDataVM, EmployeeAttendanceLog>();
-            CreateMap<EmployeeAttendanceLog, AttendanceDataVM>();
+            CreateMap<AttendanceDataVM, EmployeeAttendanceLog>().ReverseMap();
+            CreateMap<AttendanceMonthSettings,MonthSettingsVM>().ReverseMap();
         }
     }
 }

@@ -18,8 +18,8 @@ namespace Ewan.HR.Core.Application.Mappers.AutoMapper.MapperConfig
             destination.EmployeeName = source.FristName + ' ' + source.LastName;
             destination.EmployeeNumber = source.EmployeeNumber;
             destination.Department = _employeeService.Employees.Result.Where(c => c.DepartementId == source.DepartementId).FirstOrDefault().DepartmentTitle.ToString();
-            destination.DirectManagerName = _employeeService.RetuernDirectmanager(source.EmployeeId).Result.FristName + ' '
-                + _employeeService.RetuernDirectmanager(source.EmployeeId).Result.LastName;
+           // destination.DirectManagerName = _employeeService.RetuernDirectmanager(source.EmployeeId).Result.FristName + ' '
+               // + _employeeService.RetuernDirectmanager(source.EmployeeId).Result.LastName;
         }
     }
 }

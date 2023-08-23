@@ -62,7 +62,7 @@
                         absentTime = (start.TimeOfDay.Hours - 8) * 60 - start.TimeOfDay.Minutes;
                     }
 
-                    else if (end.TimeOfDay.Hours < 17)
+                    if (end.TimeOfDay.Hours < 17&&end.DayOfWeek.ToString() != "Saturday")
                     {
                         absentTime += (17 - end.TimeOfDay.Hours) * 60 - end.TimeOfDay.Minutes;
                     }

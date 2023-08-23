@@ -190,7 +190,7 @@ namespace SharedInfraStructureLibrary.Repositories
                 query = query.Skip((pageNumber - 1) * pageSize).Take(pageSize);
             }
 
-            var entities = query.ToList();
+            var entities = query;
 
             return new PagedList<TEntity>
             {
@@ -341,6 +341,9 @@ namespace SharedInfraStructureLibrary.Repositories
             {
                 query = query.Where(predicate);
             }
+
+            int countss = await query.CountAsync();
+
 
             if (searchModel != null)
             {

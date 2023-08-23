@@ -14,7 +14,8 @@ namespace Ewan.HR.InfraStructure.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=.;Database=EwanERP.Hr.Local;Integrated Security=True");
+            //optionsBuilder.UseSqlServer("Server=.;Database=EwanERP.Hr.Local;Integrated Security=True");
+            optionsBuilder.UseSqlServer("Server=tcp:ewanerp.database.windows.net,1433;Initial Catalog=ewanerp.hr.local;Persist Security Info=False;User ID=ewan_admin;Password=J35EX0NQVU5Y0G54$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
 
         protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
@@ -37,6 +38,7 @@ namespace Ewan.HR.InfraStructure.Contexts
         #region DbSets
         #region Attendance
         public DbSet<EmployeeAttendanceLog>EmployeeAttendanceLogs { get; set; }
+        public DbSet<AttendanceMonthSettings> MonthSettings { get; set; }
 
         #endregion
 
@@ -44,6 +46,14 @@ namespace Ewan.HR.InfraStructure.Contexts
         public DbSet<PayRollData> PayRollData { get; set; }
 
         #endregion
+
+        //#region Company
+        //public DbSet<Department> Departments { get; set; }
+        //#endregion
+
+        //#region Employee
+        //public DbSet<EmployeeData>Employees { get; set; }
+        //#endregion
         #endregion
     }
 }

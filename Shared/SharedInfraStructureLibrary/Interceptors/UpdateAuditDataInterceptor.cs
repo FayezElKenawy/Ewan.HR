@@ -1,7 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
-using SharedCoreLibrary.Domain.Abstractions;
 
 namespace SharedInfraStructureLibrary.Interceptors
 {

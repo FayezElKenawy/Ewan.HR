@@ -16,7 +16,6 @@ using SharedInfraStructureLibrary.Extensions;
 using FluentValidation.AspNetCore;
 using Ewan.HR.API.Common.MiddleWares;
 using Ewan.HR.API.Common.Configurations.Swagger;
-using Ewan.HR.API.Common.Configurations;
 using Ewan.HR.API.Common.Validation;
 using Ewan.HR.API.Common.Extensions;
 using Ewan.HR.InfraStructure.UinitsOfWork;
@@ -24,7 +23,6 @@ using Ewan.HR.Core.Domain.Interfaces;
 using SharedInfraStructureLibrary.Interceptors;
 using Ewan.HR.InfraStructure.Contexts;
 using SharedCoreLibrary.Application.Extensions;
-using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using Quartz;
 using Ewan.HR.API.Quartz.Jobs;
 using Ewan.Finance.InfraStructure.Loggers.Serilog;
@@ -261,7 +259,7 @@ try
             .ForJob(jobKey)
             .WithIdentity("EmployeeAttendanceJob-trigger")
              .StartNow()
-             .WithSimpleSchedule(x => x.WithIntervalInMinutes(50)
+             .WithSimpleSchedule(x => x.WithIntervalInHours(23)
              .RepeatForever())
         ); 
     });

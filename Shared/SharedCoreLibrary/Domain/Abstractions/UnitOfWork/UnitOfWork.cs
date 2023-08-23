@@ -4,7 +4,7 @@ using System.Data;
 
 namespace SharedCoreLibrary.Domain.Abstractions
 {
-    public abstract class UnitOfWork<TContext> : IUnitOfWork
+    public abstract class UnitOfWork<TContext> : IHrUnitOfWork
         where TContext : DbContext, IDisposable
     {
         readonly TContext _context;
@@ -47,12 +47,19 @@ namespace SharedCoreLibrary.Domain.Abstractions
             {
                 throw;
             }
-          
         }
 
         public virtual async Task<int> CompleteAsync()
         {
-            return await Context.SaveChangesAsync();
+            try
+            {
+                return await Context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         #region Dispose

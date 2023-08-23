@@ -1,8 +1,5 @@
 ﻿using Ewan.HR.Core.Domain.Entities.Company;
-using Ewan.HR.Core.Domain.Entities.Request.MasterData;
 using SharedCoreLibrary.Domain.Entities;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ewan.HR.Core.Domain.Entities.Employee
 {
@@ -10,7 +7,7 @@ namespace Ewan.HR.Core.Domain.Entities.Employee
     {
         #region Fields
         public string EmployeeNumber { get; set; }
-        public int TypeId { get; set; }
+        public int IDType { get; set; }
         public string NationalId { get; set; }
         public string Position { get; set; }
         public string FristName { get; set; }
@@ -28,10 +25,8 @@ namespace Ewan.HR.Core.Domain.Entities.Employee
         public string Photo { get; set; }
         #endregion
 
-        #region ForeignKeys
+        
+        public Department Department  { get; set; }
 
-        [ForeignKey("DepartementId")]
-        public Department Departments  { get; set; }
-        #endregion
     }
 }

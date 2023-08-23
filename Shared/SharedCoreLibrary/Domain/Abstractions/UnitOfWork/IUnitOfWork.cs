@@ -2,7 +2,7 @@
 
 namespace SharedCoreLibrary.Domain.Abstractions
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IHrUnitOfWork : IDisposable
     {
         IRepository<TEntity> Repository<TEntity>() where TEntity : class;
 

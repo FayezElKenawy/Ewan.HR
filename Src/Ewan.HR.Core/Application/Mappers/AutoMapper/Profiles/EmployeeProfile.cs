@@ -12,7 +12,6 @@ namespace Ewan.HR.Core.Application.Mappers.AutoMapper.Profiles
             CreateMap<EmployeeData, EmployeeVM>().AfterMap<EmployeeVMMappingConfig>();
             CreateMap<AddEmployeeVm, EmployeeData>().AfterMap((s, d) =>
             {
-                d.EmployeeId = s.EmployeeId;
                 d.DepartementId = s.Department;
                 d.DirectManager = s.DirectManagerId;
 

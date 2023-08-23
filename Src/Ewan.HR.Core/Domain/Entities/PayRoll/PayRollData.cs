@@ -19,6 +19,8 @@ namespace Ewan.HR.Core.Domain.Entities.PayRoll
         public int DelayWithPermission { get; set; }
         public int DelayWithoutPermission { get; set; }
         public int DelayWithoutCutting { get; set; }
+        public string Month { get; set; }
+        public string Year { get; set; }
 
     }
 }

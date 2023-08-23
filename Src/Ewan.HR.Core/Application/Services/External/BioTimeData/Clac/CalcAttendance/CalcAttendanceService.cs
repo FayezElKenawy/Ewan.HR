@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Ewan.HR.Core.Application.Enums.Company;
 using Ewan.HR.Core.Application.Models.Attendance;
-using Ewan.HR.Core.Application.Models.Global;
 using Ewan.HR.Core.Application.Services.External.BioTimeData.Clac.CalcAbsent;
 using Ewan.HR.Core.Application.Services.External.BioTimeData.Clac.CalcOvertime;
 using Ewan.HR.Core.Application.Services.External.BioTimeData.GetData;

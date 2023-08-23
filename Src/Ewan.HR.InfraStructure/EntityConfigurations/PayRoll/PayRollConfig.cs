@@ -1,12 +1,5 @@
-﻿using DocumentFormat.OpenXml.Presentation;
-using Ewan.HR.Core.Domain.Entities.Attendance;
-using Ewan.HR.Core.Domain.Entities.PayRoll;
+﻿using Ewan.HR.Core.Domain.Entities.PayRoll;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ewan.HR.InfraStructure.EntityConfigurations.PayRoll
 {

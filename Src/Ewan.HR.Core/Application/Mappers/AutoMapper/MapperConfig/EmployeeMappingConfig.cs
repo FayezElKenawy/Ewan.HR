@@ -17,7 +17,6 @@ namespace Ewan.HR.Core.Application.Mappers.AutoMapper.MapperConfig
         {
             try
             {
-                destination.EmployeeId = source.EmployeeId;
                 destination.Location = source.LocationId;
                 destination.Department = _employeeService.FindDepartmentById(source.DepartementId).Title.ToString() == null ? "" : _employeeService.FindDepartmentById(source.DepartementId).Title.ToString();
             }

@@ -6,16 +6,16 @@ namespace SharedCoreLibrary.Application.Extensions
     public static class ServiceCollectionExtentions
     {
         public static void AddSharedCoreLibraryUnitOfWork<TUnitOfWork>(this IServiceCollection services)
-            where TUnitOfWork : class, IUnitOfWork
+            where TUnitOfWork : class, IHrUnitOfWork
         {
-            services.AddScoped<IUnitOfWork, TUnitOfWork>();
+            services.AddScoped<IHrUnitOfWork, TUnitOfWork>();
         }
 
         public static void AddSharedCoreLibraryUnitOfWork<TUnitOfWork>(this IServiceCollection services,
             Func<IServiceProvider, TUnitOfWork> implementationFactory)
-            where TUnitOfWork : class, IUnitOfWork
+            where TUnitOfWork : class, IHrUnitOfWork
         {
-            services.AddScoped<IUnitOfWork>(implementationFactory);
+            services.AddScoped<IHrUnitOfWork>(implementationFactory);
         }
     }
 }
