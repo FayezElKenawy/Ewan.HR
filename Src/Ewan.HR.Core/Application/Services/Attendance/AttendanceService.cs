@@ -216,10 +216,13 @@ namespace Ewan.HR.Core.Application.Services.Attendance
                 var intervals1 = new List<SearchFieldModel> { };
                 foreach (var item in intervals)
                 {
-                    if ((item.FieldName == "from" && !string.IsNullOrEmpty(item.Value)) || (item.FieldName == "to" && !string.IsNullOrEmpty(item.Value)))
+                    if ((item.FieldName == "from" && !string.IsNullOrEmpty(item.Value)))
                     {
                         start = item.Value.Substring(0, 10);
                         intervals1.Add(item);
+                       
+                    }else if ((item.FieldName == "to" && !string.IsNullOrEmpty(item.Value)))
+                    {
                         end = item.Value.Substring(0, 10);
                         intervals1.Add(item);
                     }
@@ -236,21 +239,23 @@ namespace Ewan.HR.Core.Application.Services.Attendance
                 }
                 if (intervals1.Count != 0)
                 {
-                    var attendnace1 = _mapper.Map<List<AttendanceDataVM>>(await _unitOfWork.AttendanceRepository.GetListAsync(null));//get all
+                   // searchModel.SearchFields = new List<SearchFieldModel>() { searchModel.SearchFields[1] };
+                    //var attendnace1 = _mapper.Map<List<AttendanceDataVM>>(await _unitOfWork.AttendanceRepository.GetListAsync(searchModel));//get all
+                    var attendnace1 = _mapper.Map<PagedList<AttendanceDataVM>>(await _unitOfWork.AttendanceRepository.GetPagedListAsync(c => c.Date >= DateTime.Parse(start) && c.Date <= DateTime.Parse(end), searchModel));
 
-                    var newentities1 = attendnace1.Where(c => c.Date >= DateTime.Parse(start) && c.Date <= DateTime.Parse(end));//filter based on date from-to
+                    //var newentities1 = attendnace1.Entities.Where(c => c.Date >= DateTime.Parse(start) && c.Date <= DateTime.Parse(end));//filter based on date from-to
 
-                    var attendanceList1 = new PagedList<AttendanceDataVM>()
-                    {
-                        Entities = newentities1,
-                        PagingData = new PagingData()
-                        {
-                            PageNumber = newentities1.Count() / 10,
-                            PageSize = 10,
-                            TotalCount = newentities1.Count()
-                        }
-                    };
-                    return attendanceList1;
+                    //var attendanceList1 = new PagedList<AttendanceDataVM>()
+                    //{
+                    //    Entities = newentities1,
+                    //    PagingData = new PagingData()
+                    //    {
+                    //        PageNumber = newentities1.Count() / 10,
+                    //        PageSize = 10,
+                    //        TotalCount = newentities1.Count()
+                    //    }
+                    //};
+                    return attendnace1;
                 }
                 var attendnace = _mapper.Map<PagedList<AttendanceDataVM>>(await _unitOfWork.AttendanceRepository.GetPagedListAsync(null, searchModel));
                 return attendnace;
