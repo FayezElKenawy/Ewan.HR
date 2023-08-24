@@ -349,7 +349,7 @@ namespace Ewan.HR.Core.Application.Services.Attendance
             var endDate= Enumerable.Range(1, DateTime.DaysInMonth(end.Year, end.Month))  // Days: 1, 2 ... 31 etc.
                              .Select(day => new DateTime(end.Year, end.Month, day)) // Map each day to a date
                              .ToList();
-            dateList.AddRange(startDate.Where(c => c.Date <= end));
+            dateList.AddRange(endDate.Where(c => c.Date <= end));
 
             return dateList;
         }
