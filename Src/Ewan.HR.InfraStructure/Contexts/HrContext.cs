@@ -15,7 +15,7 @@ namespace Ewan.HR.InfraStructure.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlServer("Server=.;Database=EwanERP.Hr.Local;Integrated Security=True");
-            optionsBuilder.UseSqlServer("Server=tcp:ewanerp.database.windows.net,1433;Initial Catalog=ewanerp.hr.local;Persist Security Info=False;User ID=ewan_admin;Password=J35EX0NQVU5Y0G54$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            optionsBuilder.UseSqlServer("Server=ewan1.uksouth.cloudapp.azure.com;Database=EwanERP.HR.Dev;MultipleActiveResultSets=true;User Id=nawe1;Password=ylaQB@4$1bbZ;");
         }
 
         protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
