@@ -36,7 +36,7 @@ namespace Ewan.HR.API.Controllers.Attendance
         [HttpPost("GetAllAttendance")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AttendanceDataDTO))]
         public async Task<IActionResult> GetAttendance(SearchModel searchModel)
-            {
+        {
             var result = _mapper.Map<PagedList<AttendanceDataDTO>>(await _attendanceService.AttendanceDataPagedList(searchModel));
             return Ok(result);
         }

@@ -83,7 +83,7 @@ namespace Ewan.HR.InfraStructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MonthSettings");
+                    b.ToTable("MonthSettings", (string)null);
                 });
 
             modelBuilder.Entity("Ewan.HR.Core.Domain.Entities.Attendance.EmployeeAttendanceLog", b =>
@@ -222,7 +222,7 @@ namespace Ewan.HR.InfraStructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Department");
+                    b.ToTable("Department", (string)null);
                 });
 
             modelBuilder.Entity("Ewan.HR.Core.Domain.Entities.Employee.EmployeeData", b =>

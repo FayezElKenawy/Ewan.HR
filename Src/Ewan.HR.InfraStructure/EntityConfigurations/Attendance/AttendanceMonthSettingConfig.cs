@@ -14,20 +14,6 @@ namespace Ewan.HR.InfraStructure.EntityConfigurations.Attendance
         public void Configure(EntityTypeBuilder<AttendanceMonthSettings> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.HasData(
-             new AttendanceMonthSettings() {CreationDate = DateTime.Now,MonthName="يناير"},
-                new AttendanceMonthSettings() { CreationDate = DateTime.Now, MonthName = "فبراير"},
-                new AttendanceMonthSettings() { CreationDate = DateTime.Now, MonthName = "مارس"},
-                new AttendanceMonthSettings() { CreationDate = DateTime.Now, MonthName = "أبريل" },
-                new AttendanceMonthSettings() { CreationDate = DateTime.Now, MonthName = "مايو"},
-                new AttendanceMonthSettings() { CreationDate = DateTime.Now, MonthName = "يونيه"},
-                new AttendanceMonthSettings() { CreationDate = DateTime.Now, MonthName = "يوليو"},
-                new AttendanceMonthSettings() { CreationDate = DateTime.Now, MonthName = "أغسطس"},
-                new AttendanceMonthSettings() { CreationDate = DateTime.Now, MonthName = "سبتمبر"},
-                new AttendanceMonthSettings() { CreationDate = DateTime.Now, MonthName = "أكتوبر" },
-                new AttendanceMonthSettings() { CreationDate = DateTime.Now, MonthName = "نوفمبر"},
-                new AttendanceMonthSettings() { CreationDate = DateTime.Now, MonthName = "ديسمبر"}
-                );
         }
     }
 }

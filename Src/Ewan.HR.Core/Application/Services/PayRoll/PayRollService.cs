@@ -38,8 +38,8 @@ namespace Ewan.HR.Core.Application.Services.PayRoll
             var datesetting = _attendanceService.GetMonthSettings(month);
 
             var Attendance = _attendanceService.GatAttendanceData(null,
-                DateTime.Parse($"{datesetting.StartMonth}/{datesetting.StartDay}/{startYear.ToString()}").ToShortDateString()
-                , DateTime.Parse($"{datesetting.EndMonth}/{datesetting.EndDay}/{endYear}").ToShortDateString()
+                DateTime.Parse($"{datesetting.StartMonth}/{datesetting.StartDay}/{startYear}").ToShortDateString(),
+                 DateTime.Parse($"{datesetting.EndMonth}/{datesetting.EndDay}/{endYear}").ToShortDateString()
                 ).GroupBy(c => c.EmployeeCode);
 
             var list = new List<PayRollAddVM>();
@@ -69,21 +69,21 @@ namespace Ewan.HR.Core.Application.Services.PayRoll
 
         public async Task<MemoryStream> PayRollDownload(string month)
         {
-           
+
             try
             {
                 MemoryStream memoryStream = new MemoryStream();
                 var monthName = CultureInfo.GetCultureInfo("Ar").DateTimeFormat.GetMonthName(int.Parse(DateTime.Parse(month).Month.ToString()));
                 var payroll = _unitOfWork.PayRollRepository.GetList(c => c.Month == monthName).ToList();
 
-                if (payroll.Count == 0) 
+                if (payroll.Count == 0)
                 {
-                    payroll = _mapper.Map<List<PayRollData>>(  Calculate(month));
+                    payroll = _mapper.Map<List<PayRollData>>(Calculate(month));
                 }
 
                 using (ExcelPackage excelPackage = new ExcelPackage(memoryStream))
                 {
-                    
+
                     if (payroll.Count != 0)
                     {
                         var worksheet = ReturnPayrollWorkSheet(excelPackage, $"PayRollSheet-{DateTime.Now.ToShortDateString()}", $"مسير رواتب المكتب الرئيسي والفروع لشهر {monthName}");
@@ -159,6 +159,6 @@ namespace Ewan.HR.Core.Application.Services.PayRoll
             }
         }
 
-      
+
     }
 }

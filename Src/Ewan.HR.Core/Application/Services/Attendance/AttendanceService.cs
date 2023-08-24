@@ -5,6 +5,7 @@ using Ewan.HR.Core.Application.Services.External.BioTimeData.GetData;
 using Ewan.HR.Core.Domain.Entities.Attendance;
 using Ewan.HR.Core.Domain.Interfaces;
 using OfficeOpenXml;
+using OfficeOpenXml.VBA;
 using SharedCoreLibrary.Application.Models.Request;
 using SharedCoreLibrary.Application.Models.Request.DynamicSearch;
 using SharedCoreLibrary.Domain.Entities;
@@ -150,17 +151,35 @@ namespace Ewan.HR.Core.Application.Services.Attendance
                         {
                             int row = 4;
                             var worksheet = RetrunAttendanceWorksheet(excelPackage, item.FirstOrDefault().EmployeeName, item.FirstOrDefault().EmployeeCode, $"from {startTime} to {endTime}");
-                            foreach (var item1 in item)
+                            var dateList = GetDates(DateTime.Parse(startTime), DateTime.Parse(endTime));
+                            foreach (var item1 in dateList)
                             {
-                                worksheet.Cells[$"A{row}"].Value = item1.Date.ToString("dd-MM-yyyy");
-                                worksheet.Cells[$"B{row}"].Value = item1.EmployeeCode.ToString();
-                                worksheet.Cells[$"C{row}"].Value = item1.EmployeeName.ToString();
-                                worksheet.Cells[$"D{row}"].Value = item1.Day.ToString();
-                                worksheet.Cells[$"E{row}"].Value = item1.ClockIn.TimeOfDay.ToString();
-                                worksheet.Cells[$"F{row}"].Value = item1.ClockOut.TimeOfDay.ToString();
-                                worksheet.Cells[$"G{row}"].Value = item1.AbsentTime.ToString();
-                                worksheet.Cells[$"H{row}"].Value = item1.OverTime.ToString();
-                                worksheet.Cells[$"I{row}"].Value = item1.ChangeTime.ToString();
+                                var date = item.Where(c => c.Date == item1.Date);
+                                if (date.Count()!=0)
+                                {
+                                    worksheet.Cells[$"A{row}"].Value = date.FirstOrDefault().Date.ToString("dd-MM-yyyy");
+                                    worksheet.Cells[$"B{row}"].Value = date.FirstOrDefault().EmployeeCode.ToString();
+                                    worksheet.Cells[$"C{row}"].Value = date.FirstOrDefault().EmployeeName.ToString();
+                                    worksheet.Cells[$"D{row}"].Value = date.FirstOrDefault().Day.ToString();
+                                    worksheet.Cells[$"E{row}"].Value = date.FirstOrDefault().ClockIn.TimeOfDay.ToString();
+                                    worksheet.Cells[$"F{row}"].Value = date.FirstOrDefault().ClockOut.TimeOfDay.ToString();
+                                    worksheet.Cells[$"G{row}"].Value = date.FirstOrDefault().AbsentTime.ToString();
+                                    worksheet.Cells[$"H{row}"].Value = date.FirstOrDefault().OverTime.ToString();
+                                    worksheet.Cells[$"I{row}"].Value = date.FirstOrDefault().ChangeTime.ToString();
+                                }
+                                else
+                                {
+                                    worksheet.Cells[$"A{row}"].Value = item1.Date.ToString("dd-MM-yyyy");
+                                    worksheet.Cells[$"B{row}"].Value = item.FirstOrDefault().EmployeeCode.ToString();
+                                    worksheet.Cells[$"C{row}"].Value = item.FirstOrDefault().EmployeeName.ToString();
+                                    worksheet.Cells[$"D{row}"].Value = item1.DayOfWeek.ToString();
+                                    worksheet.Cells[$"E{row}"].Value = "0";
+                                    worksheet.Cells[$"F{row}"].Value = "0";
+                                    worksheet.Cells[$"G{row}"].Value = "0";
+                                    worksheet.Cells[$"H{row}"].Value = "0";
+                                    worksheet.Cells[$"I{row}"].Value = "0";
+                                }
+
                                 row++;
                             }
                             worksheet.Cells[$"A1:I{row}"].AutoFitColumns();
@@ -180,22 +199,7 @@ namespace Ewan.HR.Core.Application.Services.Attendance
 
         }
 
-        private ExcelWorksheet RetrunAttendanceWorksheet(ExcelPackage excelPackage, string empName, string sheetName, string interval)
-        {
-            ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add(sheetName);
-            worksheet.Cells["A1"].Value = $"Empolyee Name {empName}";
-            worksheet.Cells["A2"].Value = interval;
-            worksheet.Cells["A3"].Value = "Date";
-            worksheet.Cells["B3"].Value = "Employee Code";
-            worksheet.Cells["C3"].Value = "Employee Name";
-            worksheet.Cells["D3"].Value = "Day";
-            worksheet.Cells["E3"].Value = "Time In";
-            worksheet.Cells["F3"].Value = "Time Out";
-            worksheet.Cells["G3"].Value = "Late";
-            worksheet.Cells["H3"].Value = "OverTime";
-            worksheet.Cells["I3"].Value = "Change Time";
-            return worksheet;
-        }
+     
 
         /// <summary>
         /// 
@@ -219,7 +223,7 @@ namespace Ewan.HR.Core.Application.Services.Attendance
                         end = item.Value.Substring(0, 10);
                         intervals1.Add(item);
                     }
-                    else
+                    else if(intervals.Count==3)
                     {//first load
                         searchModel.SearchFields.Clear();
                         searchModel.SearchFields.Add(new SearchFieldModel
@@ -325,6 +329,40 @@ namespace Ewan.HR.Core.Application.Services.Attendance
         public MonthSettingsVM GetMonthSettings(string month)
         {
             return _mapper.Map<MonthSettingsVM>(_unitOfWork.MonthSettingsRepository.Get(c => c.MonthName == month));
+        }
+        #endregion
+
+        #region Private Function
+        public static List<DateTime> GetDates(DateTime start, DateTime end)
+        {
+            var dateList=new List<DateTime>();
+            var startDate= Enumerable.Range(1, DateTime.DaysInMonth(start.Year, start.Month))
+                             .Select(day => new DateTime(start.Year, start.Month, day)) 
+                             .ToList();
+            dateList.AddRange(startDate.Where(c=>c.Date>=start));
+
+            var endDate= Enumerable.Range(1, DateTime.DaysInMonth(end.Year, end.Month))  // Days: 1, 2 ... 31 etc.
+                             .Select(day => new DateTime(end.Year, end.Month, day)) // Map each day to a date
+                             .ToList();
+            dateList.AddRange(startDate.Where(c => c.Date <= end));
+
+            return dateList;
+        }
+        private ExcelWorksheet RetrunAttendanceWorksheet(ExcelPackage excelPackage, string empName, string sheetName, string interval)
+        {
+            ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add(sheetName);
+            worksheet.Cells["A1"].Value = $"Empolyee Name {empName}";
+            worksheet.Cells["A2"].Value = interval;
+            worksheet.Cells["A3"].Value = "Date";
+            worksheet.Cells["B3"].Value = "Employee Code";
+            worksheet.Cells["C3"].Value = "Employee Name";
+            worksheet.Cells["D3"].Value = "Day";
+            worksheet.Cells["E3"].Value = "Time In";
+            worksheet.Cells["F3"].Value = "Time Out";
+            worksheet.Cells["G3"].Value = "Late";
+            worksheet.Cells["H3"].Value = "OverTime";
+            worksheet.Cells["I3"].Value = "Change Time";
+            return worksheet;
         }
         #endregion
 
