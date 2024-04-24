@@ -1,12 +1,11 @@
 ﻿using Ewan.Finance.Core;
-using Ewan.HR.Core.Domain.Entities.Attendance;
-using Ewan.HR.Core.Domain.Entities.PayRoll;
+using Ewan.HR.Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace Ewan.HR.InfraStructure.Contexts
 {
-    public class HrContext: DbContext
+    public class HrContext : DbContext
     {
         public HrContext() { }
 
@@ -36,24 +35,7 @@ namespace Ewan.HR.InfraStructure.Contexts
         }
 
         #region DbSets
-        #region Attendance
-        public DbSet<EmployeeAttendanceLog>EmployeeAttendanceLogs { get; set; }
-        public DbSet<AttendanceMonthSettings> MonthSettings { get; set; }
-
-        #endregion
-
-        #region PayRoll
-        public DbSet<PayRollData> PayRollData { get; set; }
-
-        #endregion
-
-        //#region Company
-        //public DbSet<Department> Departments { get; set; }
-        //#endregion
-
-        //#region Employee
-        //public DbSet<EmployeeData>Employees { get; set; }
-        //#endregion
+        public DbSet<EmployeeData> Employee { get; set; }
         #endregion
     }
 }

@@ -29,8 +29,11 @@
 
   <ItemGroup>
     <Compile Remove="Application\Extensions\**" />
+    <Compile Remove="Application\Models\External\**" />
     <EmbeddedResource Remove="Application\Extensions\**" />
+    <EmbeddedResource Remove="Application\Models\External\**" />
     <None Remove="Application\Extensions\**" />
+    <None Remove="Application\Models\External\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -72,7 +75,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Models\External\" />
+    <Folder Include="Application\Mappers\AutoMapper\MapperConfig\RequestMappingConfig\" />
     <Folder Include="Application\Triggers\" />
   </ItemGroup>
 

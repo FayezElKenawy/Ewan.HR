@@ -1,4 +1,4 @@
-﻿namespace Ewan.HR.Core.Application.Models.Employee
+﻿namespace Ewan.HR.Core.Application.Models
 {
     public class AddEmplyeeProfileVM
     {

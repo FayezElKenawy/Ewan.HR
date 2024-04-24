@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
-namespace Ewan.HR.Core.Application.Models.Employee
+namespace Ewan.HR.Core.Application.Models
 {
     public class AddEmployeeVm
     {

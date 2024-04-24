@@ -1,15 +1,4 @@
 ﻿using Ewan.Finance.Core.Application.Services;
-using Ewan.HR.Core.Application.Services.Attendance;
-using Ewan.HR.Core.Application.Services.External.BioTimeData.Clac.CalcAbsent;
-using Ewan.HR.Core.Application.Services.External.BioTimeData.Clac.CalcAttendance;
-using Ewan.HR.Core.Application.Services.External.BioTimeData.Clac.CalcOvertime;
-using Ewan.HR.Core.Application.Services.External.BioTimeData.GetData;
-using Ewan.HR.Core.Application.Services.External.Identity;
-using Ewan.HR.Core.Application.Services.PayRoll;
-using Ewan.HR.Core.Application.Services.Request.Internal.InternalItemsServices;
-using Ewan.HR.Core.Application.Services.Request.Internal.InternalRequestServices;
-using Ewan.HR.Core.Application.Services.Request.MasterData;
-using Ewan.HR.Core.Application.Services.Request.Vacation;
 using FluentValidation;
 using MediatR;
 using SharedCoreLibrary.Application.Common.Behaviours;
@@ -43,14 +32,14 @@ namespace Ewan.HR.API.Common.Extensions
 
             #region Attendance
             services.AddScoped<IAttendanceService, AttendanceService>();
-            services.AddScoped<ICalcAttendanceService,CalcAttendanceService>();
+            services.AddScoped<ICalcAttendanceService, CalcAttendanceService>();
             services.AddScoped<IBioTimeService, BioTimeService>();
             services.AddScoped<ICalcAbsentTime, CalcAbsentTime>();
             services.AddScoped<ICalcOvertime, CalcOvertime>();
             #endregion
 
             #region PayRoll
-            services.AddScoped<IPayRollService,PayRollService>();
+            services.AddScoped<IPayRollService, PayRollService>();
             #endregion
 
             #region TransactionLogger

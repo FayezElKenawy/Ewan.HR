@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using Ewan.HR.Core.Application.Mappers.AutoMapper.MapperConfig;
-using Ewan.HR.Core.Application.Models.Employee;
-using Ewan.HR.Core.Domain.Entities.Employee;
+using Ewan.HR.Core.Application.Models;
+using Ewan.HR.Core.Domain.Entities;
 
 namespace Ewan.HR.Core.Application.Mappers.AutoMapper.Profiles
 {
@@ -9,16 +8,7 @@ namespace Ewan.HR.Core.Application.Mappers.AutoMapper.Profiles
     {
         public EmployeeProfile()
         {
-            CreateMap<Employee, EmployeeVM>().AfterMap<EmployeeVMMappingConfig>();
-            CreateMap<AddEmployeeVm, Employee>().AfterMap((s, d) =>
-            {
-                d.DepartementId = s.Department;
-                d.DirectManager = s.DirectManagerId;
-
-            });
-            CreateMap<Employee, AddEmployeeVm>().AfterMap<EmployeeMappingConfig>();
-            
-            CreateMap<Employee, EmployeeRequestVM>();
+            CreateMap<EmployeeData, EmployeeRequestVM>();
         }
     }
 }

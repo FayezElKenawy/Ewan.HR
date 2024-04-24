@@ -13,6 +13,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\Request\**" />
+    <Compile Remove="Mappers\AutoMapper\TransactionLogger\**" />
+    <Compile Remove="Quartz\Triggers\**" />
+    <Content Remove="Controllers\Request\**" />
+    <Content Remove="Mappers\AutoMapper\TransactionLogger\**" />
+    <Content Remove="Quartz\Triggers\**" />
+    <EmbeddedResource Remove="Controllers\Request\**" />
+    <EmbeddedResource Remove="Mappers\AutoMapper\TransactionLogger\**" />
+    <EmbeddedResource Remove="Quartz\Triggers\**" />
+    <None Remove="Controllers\Request\**" />
+    <None Remove="Mappers\AutoMapper\TransactionLogger\**" />
+    <None Remove="Quartz\Triggers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="ClosedXML" Version="0.97.0" />
@@ -52,9 +67,8 @@
 
   <ItemGroup>
     <Folder Include="Common\Filters\" />
-    <Folder Include="Controllers\Request\" />
-    <Folder Include="Mappers\AutoMapper\TransactionLogger\" />
-    <Folder Include="Quartz\Triggers\" />
+    <Folder Include="Mappers\AutoMapper\" />
+    <Folder Include="Quartz\Jobs\" />
   </ItemGroup>
 	
 </Project>
