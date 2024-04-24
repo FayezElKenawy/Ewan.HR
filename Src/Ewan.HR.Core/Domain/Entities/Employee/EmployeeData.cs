@@ -3,7 +3,7 @@ using SharedCoreLibrary.Domain.Entities;
 
 namespace Ewan.HR.Core.Domain.Entities.Employee
 {
-    public class EmployeeData:AuditData
+    public class Employee:AuditData
     {
         #region Fields
         public string EmployeeNumber { get; set; }

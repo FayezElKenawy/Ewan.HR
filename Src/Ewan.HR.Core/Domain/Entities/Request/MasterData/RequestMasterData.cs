@@ -50,7 +50,7 @@ namespace Ewan.HR.Core.Domain.Entities.Request.MasterData
         public RequestType Type { get; set; }
         public VacationRequest Vacation { get; set; }
         [ForeignKey("EmployeeNumber")]
-        public EmployeeData Employee { get; set; }
+        public Employee.Employee Employee { get; set; }
         #endregion
     }
 }

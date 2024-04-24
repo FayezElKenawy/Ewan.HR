@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Ewan.HR.InfraStructure.EntityConfigurations.Employee
 {
-    internal sealed class EmployeeDataConfig : IEntityTypeConfiguration<EmployeeData>
+    internal sealed class EmployeeDataConfig : IEntityTypeConfiguration<Core.Domain.Entities.Employee.Employee>
     {
-        public void Configure(EntityTypeBuilder<EmployeeData> builder)
+        public void Configure(EntityTypeBuilder<Core.Domain.Entities.Employee.Employee> builder)
         {
             builder.HasKey(e => e.Id);
             builder.ToTable("EmployeeData", "HR");

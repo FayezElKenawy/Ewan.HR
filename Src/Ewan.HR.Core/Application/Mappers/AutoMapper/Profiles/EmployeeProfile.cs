@@ -9,16 +9,16 @@ namespace Ewan.HR.Core.Application.Mappers.AutoMapper.Profiles
     {
         public EmployeeProfile()
         {
-            CreateMap<EmployeeData, EmployeeVM>().AfterMap<EmployeeVMMappingConfig>();
-            CreateMap<AddEmployeeVm, EmployeeData>().AfterMap((s, d) =>
+            CreateMap<Employee, EmployeeVM>().AfterMap<EmployeeVMMappingConfig>();
+            CreateMap<AddEmployeeVm, Employee>().AfterMap((s, d) =>
             {
                 d.DepartementId = s.Department;
                 d.DirectManager = s.DirectManagerId;
 
             });
-            CreateMap<EmployeeData, AddEmployeeVm>().AfterMap<EmployeeMappingConfig>();
+            CreateMap<Employee, AddEmployeeVm>().AfterMap<EmployeeMappingConfig>();
             
-            CreateMap<EmployeeData, EmployeeRequestVM>();
+            CreateMap<Employee, EmployeeRequestVM>();
         }
     }
 }

@@ -5,7 +5,7 @@ using Ewan.HR.Core.Domain.Entities.Employee;
 
 namespace Ewan.HR.Core.Application.Mappers.AutoMapper.MapperConfig
 {
-    public class EmployeeRequestMappingConfig : IMappingAction<EmployeeData, EmployeeRequestVM>
+    public class EmployeeRequestMappingConfig : IMappingAction<Employee, EmployeeRequestVM>
     {
         private readonly IEmployeeService _employeeService;
 
@@ -13,7 +13,7 @@ namespace Ewan.HR.Core.Application.Mappers.AutoMapper.MapperConfig
         {
             _employeeService = employeeService;
         }
-        public void Process(EmployeeData source, EmployeeRequestVM destination, ResolutionContext context)
+        public void Process(Employee source, EmployeeRequestVM destination, ResolutionContext context)
         {
             destination.EmployeeName = source.FristName + ' ' + source.LastName;
             destination.EmployeeNumber = source.EmployeeNumber;
