@@ -42,11 +42,11 @@ namespace Ewan.HR.Core.Application.Services.Request.MasterData
 
         public AddRequestVM GetEmployeeData(string EmployeeId)
         {
-            var employeeVM = _employeeService.SelectCustom(EmployeeId).Result;
-            if (employeeVM.EmployeeId != null)
-            {
-                return _mapper.Map<AddRequestVM>(employeeVM);
-            }
+            //var employeeVM = _employeeService.SelectCustom(EmployeeId).Result;
+            //if (employeeVM.EmployeeId != null)
+            //{
+            //    return _mapper.Map<AddRequestVM>(employeeVM);
+            //}
             return new AddRequestVM() { };
         }
 
@@ -54,17 +54,17 @@ namespace Ewan.HR.Core.Application.Services.Request.MasterData
         {
             try
             {
-                var mm = _employeeService.ReturnEmployeeNumber(ManagerId);
-                if (ManagerId != mm)
-                {
-                    var t = await _unitOfWork.RequestRepository
-                                                            .GetListAsync(e => e.SupervisorId == ManagerId 
-                                                                            || e.SupervisorId == _employeeService.ReturnEmployeeNumber(ManagerId));
-                    return _mapper.Map<IList<RequestVM>>(t);
-                }
+                //var mm = _employeeService.ReturnEmployeeNumber(ManagerId);
+                //if (ManagerId != mm)
+                //{
+                //    var t = await _unitOfWork.RequestRepository
+                //                                            .GetListAsync(e => e.SupervisorId == ManagerId 
+                //                                                            || e.SupervisorId == _employeeService.ReturnEmployeeNumber(ManagerId));
+                //    return _mapper.Map<IList<RequestVM>>(t);
+                //}
 
-                var t1 = await _unitOfWork.RequestRepository.GetListAsync(e => e.SupervisorId == ManagerId);
-                return _mapper.Map<IList<RequestVM>>(t1);
+                //var t1 = await _unitOfWork.RequestRepository.GetListAsync(e => e.SupervisorId == ManagerId);
+                return _mapper.Map<IList<RequestVM>>(null);
             }
             catch (Exception ex)
             {
@@ -152,7 +152,7 @@ namespace Ewan.HR.Core.Application.Services.Request.MasterData
                         NewRequest.Replace(t => t.SendtoCEO, byte.Parse("1"));
                         NewRequest.Replace(t => t.CEOSentDate, DateTime.Now);
                         NewRequest.Replace(t => t.CEOApprovalStatus, RequestStatus.SendToCEO);
-                        NewRequest.Replace(t => t.CEOId, _employeeService.ReturnCeo().EmployeeId.ToString());
+                        //NewRequest.Replace(t => t.CEOId, _employeeService.ReturnCeo().EmployeeId.ToString());
                         NewRequest.ApplyTo(OldRequest);
                         await _unitOfWork.RequestRepository.CustomPropUpdate(OldRequest,
                             new string[] { "HrApproval", "HrApprovalDate", "SendtoCEO",
