@@ -14,17 +14,17 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\Request\**" />
-    <Compile Remove="Mappers\AutoMapper\TransactionLogger\**" />
-    <Compile Remove="Quartz\Triggers\**" />
+    <Compile Remove="Mappers\**" />
+    <Compile Remove="Quartz\**" />
     <Content Remove="Controllers\Request\**" />
-    <Content Remove="Mappers\AutoMapper\TransactionLogger\**" />
-    <Content Remove="Quartz\Triggers\**" />
+    <Content Remove="Mappers\**" />
+    <Content Remove="Quartz\**" />
     <EmbeddedResource Remove="Controllers\Request\**" />
-    <EmbeddedResource Remove="Mappers\AutoMapper\TransactionLogger\**" />
-    <EmbeddedResource Remove="Quartz\Triggers\**" />
+    <EmbeddedResource Remove="Mappers\**" />
+    <EmbeddedResource Remove="Quartz\**" />
     <None Remove="Controllers\Request\**" />
-    <None Remove="Mappers\AutoMapper\TransactionLogger\**" />
-    <None Remove="Quartz\Triggers\**" />
+    <None Remove="Mappers\**" />
+    <None Remove="Quartz\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -67,8 +67,6 @@
 
   <ItemGroup>
     <Folder Include="Common\Filters\" />
-    <Folder Include="Mappers\AutoMapper\" />
-    <Folder Include="Quartz\Jobs\" />
   </ItemGroup>
 	
 </Project>
