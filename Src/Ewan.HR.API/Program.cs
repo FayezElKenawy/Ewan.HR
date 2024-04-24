@@ -24,7 +24,6 @@ using SharedInfraStructureLibrary.Interceptors;
 using Ewan.HR.InfraStructure.Contexts;
 using SharedCoreLibrary.Application.Extensions;
 using Quartz;
-using Ewan.HR.API.Quartz.Jobs;
 using Ewan.Finance.InfraStructure.Loggers.Serilog;
 using Ewan.Finance.Core.Application.Triggers;
 
@@ -253,7 +252,6 @@ try
 
         // Just use the name of your job that you created in the Jobs folder.
         var jobKey = new JobKey("EmployeeAttendanceJob");
-        q.AddJob<EmployeeAttendanceJob>(opts => opts.WithIdentity(jobKey));
 
         q.AddTrigger(opts => opts
             .ForJob(jobKey)
