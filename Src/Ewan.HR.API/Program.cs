@@ -246,21 +246,21 @@ try
     #endregion
 
     #region Quartz
-    //builder.Services.AddQuartz(q =>
-    //{
-    //    q.UseMicrosoftDependencyInjectionJobFactory();
+    builder.Services.AddQuartz(q =>
+    {
+        q.UseMicrosoftDependencyInjectionJobFactory();
 
-    //    // Just use the name of your job that you created in the Jobs folder.
-    //    var jobKey = new JobKey("EmployeeAttendanceJob");
+        //// Just use the name of your job that you created in the Jobs folder.
+        //var jobKey = new JobKey("EmployeeAttendanceJob");
 
-    //    q.AddTrigger(opts => opts
-    //        .ForJob(jobKey)
-    //        .WithIdentity("EmployeeAttendanceJob-trigger")
-    //         .StartNow()
-    //         .WithSimpleSchedule(x => x.WithIntervalInHours(23)
-    //         .RepeatForever())
-    //    ); 
-    //});
+        //q.AddTrigger(opts => opts
+        //    .ForJob(jobKey)
+        //    .WithIdentity("EmployeeAttendanceJob-trigger")
+        //     .StartNow()
+        //     .WithSimpleSchedule(x => x.WithIntervalInHours(23)
+        //     .RepeatForever())
+        //);
+    });
 
     // ASP.NET Core hosting
     builder.Services.AddQuartzServer(options =>
